@@ -11,10 +11,13 @@ network if not found (for example, when the user clears the site data).
 This way, after the first successful load on a modern browser, all resources
 are available even without a network connection.
 
+The model has been trained using the [mnist-node](https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node) example code in [tfjs-examples](https://github.com/tensorflow/tfjs-examples) repository.
+
 
 ## Running the code
 
-You need to have Node.js installed. In the project root directory, run these commands:
+You need to have Node.js installed. In the project root directory, run these
+commands:
 
 ```bash
 npm install
