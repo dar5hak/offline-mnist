@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && parcel build index.html",
+    "build": "npm run clean && parcel build index.html --public-url /offline-mnist/",
     "clean": "rimraf dist",
     "deploy": "npm run build && gh-pages -d dist",
     "start": "NODE_ENV=development parcel index.html --open",

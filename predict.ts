@@ -1,7 +1,7 @@
 import { avgPool, loadModel, Model, Rank, Tensor, tensor3d, Tensor3D } from '@tensorflow/tfjs';
 
 const MODEL_INDEXEDDB_URL = 'indexeddb://mnist-model';
-const MODEL_HTTP_URL = '/offline-mnist/models/model.json';
+const MODEL_HTTP_URL = 'models/model.json';
 
 export async function fetchModel(): Promise<Model> {
     try {
