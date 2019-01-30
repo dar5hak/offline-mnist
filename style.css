@@ -1,0 +1,58 @@
+body {
+    background-color: blanchedalmond;
+    color: sienna;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+main {
+    width: 284px;
+    margin: auto;
+}
+
+canvas {
+    border: 2px dashed sienna;
+    border-radius: .5rem;
+    background-color: antiquewhite;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-group button {
+    background-color: saddlebrown;
+    border: none;
+    border-radius: .25rem;
+    color: antiquewhite;
+    cursor: pointer;
+    flex-grow: 1;
+    padding: .5rem 1rem;
+    margin-top: .5rem;
+}
+
+.button-group button:first-child {
+    margin-right: .25rem;
+}
+
+.button-group button:last-child {
+    margin-left: .25rem;
+}
+
+.button-group button:disabled {
+    background-color: burlywood;
+}
+
+.button-group button:hover {
+    background-color: chocolate;
+}
+
+#prediction-label {
+    font-size: large;
+}
+
+#prediction-output {
+    font-size: xx-large;
+    font-weight: bold;
+}
