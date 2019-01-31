@@ -42,34 +42,47 @@ function redraw(ctx: CanvasRenderingContext2D, strokes: Array<DrawPoint>) {
     }
 }
 
-context.canvas.addEventListener('mousedown', event => {
+function handleStart(event: MouseEvent | TouchEvent) {
+    event.preventDefault();
     isPainting = true;
-    allStrokes.push({
-        x: event.pageX - context.canvas.offsetLeft,
-        y: event.pageY - context.canvas.offsetTop,
-        clickDrag: true
-    });
+    const x = (event instanceof MouseEvent ?
+        event.pageX :
+        event.changedTouches[0].pageX) - context.canvas.offsetLeft;
+    const y = (event instanceof MouseEvent ?
+        event.pageY :
+        event.changedTouches[0].pageY) - context.canvas.offsetTop;
+    allStrokes.push({ x, y, clickDrag: true });
     redraw(context, allStrokes);
-});
+}
 
-context.canvas.addEventListener('mousemove', event => {
+function handleMove(event: MouseEvent | TouchEvent) {
+    event.preventDefault();
     if (isPainting) {
-        allStrokes.push({
-            x: event.pageX - context.canvas.offsetLeft,
-            y: event.pageY - context.canvas.offsetTop,
-            clickDrag: true
-        });
+        const x = (event instanceof MouseEvent ?
+            event.pageX :
+            event.changedTouches[0].pageX) - context.canvas.offsetLeft;
+        const y = (event instanceof MouseEvent ?
+            event.pageY :
+            event.changedTouches[0].pageY) - context.canvas.offsetTop;
+        allStrokes.push({ x, y, clickDrag: true });
         redraw(context, allStrokes);
     }
-});
+}
 
-context.canvas.addEventListener('mouseup', () => {
+function handleEnd(event: MouseEvent | TouchEvent) {
+    event.preventDefault();
     isPainting = false;
-});
+}
 
-context.canvas.addEventListener('mouseleave', () => {
-    isPainting = false;
-});
+context.canvas.addEventListener('mousedown', handleStart);
+context.canvas.addEventListener('mousemove', handleMove);
+context.canvas.addEventListener('mouseup', handleEnd);
+context.canvas.addEventListener('mouseleave', handleEnd);
+
+context.canvas.addEventListener('touchstart', handleStart);
+context.canvas.addEventListener('touchmove', handleMove);
+context.canvas.addEventListener('touchend', handleEnd);
+context.canvas.addEventListener('touchcancel', handleEnd);
 
 clearButton.addEventListener('click', () => {
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
