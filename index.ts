@@ -1,4 +1,4 @@
-import { Model } from '@tensorflow/tfjs';
+import { LayersModel } from '@tensorflow/tfjs';
 import { fetchModel, predict, reduceInput } from './predict';
 
 // Types
@@ -18,7 +18,7 @@ const predictionOutputArea = document.getElementById('prediction-output');
 // State variables
 const allStrokes: Array<DrawPoint> = [];
 let isPainting = false;
-let model: Model;
+let model: LayersModel;
 
 function redraw(ctx: CanvasRenderingContext2D, strokes: Array<DrawPoint>) {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
