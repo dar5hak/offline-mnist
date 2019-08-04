@@ -1,19 +1,19 @@
-import { avgPool, loadModel, Model, Rank, Tensor, tensor3d, Tensor3D } from '@tensorflow/tfjs';
+import { avgPool, loadLayersModel, LayersModel, Rank, Tensor, tensor3d, Tensor3D } from '@tensorflow/tfjs';
 
 const MODEL_INDEXEDDB_URL = 'indexeddb://mnist-model';
 const MODEL_HTTP_URL = 'models/model.json';
 
-export async function fetchModel(): Promise<Model> {
+export async function fetchModel(): Promise<LayersModel> {
     try {
         // Try loading locally saved model
-        const model = await loadModel(MODEL_INDEXEDDB_URL);
+        const model = await loadLayersModel(MODEL_INDEXEDDB_URL);
         console.log('Model loaded from IndexedDB');
 
         return model;
     } catch (error) {
         // If local load fails, get it from the server
         try {
-            const model = await loadModel(window.location.href + MODEL_HTTP_URL);
+            const model = await loadLayersModel(window.location.href + MODEL_HTTP_URL);
             console.log('Model loaded from HTTP.');
 
             // Store the downloaded model locally for future use
@@ -40,7 +40,7 @@ export function reduceInput(rawImageData: Uint8ClampedArray): Tensor3D {
     return avgPool(alphaTensor, 10, 10, 'same');
 }
 
-export async function predict(input: Tensor3D, model: Model) {
+export async function predict(input: Tensor3D, model: LayersModel) {
     const prediction = model.predict(input.reshape([1, 28, 28, 1])) as Tensor<Rank>;
     const result = await prediction.argMax(1).data();
     return result[0];
