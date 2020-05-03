@@ -23,7 +23,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@tensorflow/tfjs": "^1.2.6",
-    "tslib": "^1.10.0"
+    "tslib": "^1.11.1"
   },
   "devDependencies": {
     "gh-pages": "^2.0.1",
