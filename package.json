@@ -22,7 +22,7 @@
   "author": "Darshak Parikh",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@tensorflow/tfjs": "^2.8.1",
+    "@tensorflow/tfjs": "^2.8.2",
     "tslib": "^2.0.2"
   },
   "devDependencies": {
